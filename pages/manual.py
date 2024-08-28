@@ -1,34 +1,25 @@
 # Arquivo: pages/manual.py
 import streamlit as st
-import base64
-import os
 
 def main():
     st.title("Manual do Usuário")
 
-    # Caminho para o arquivo PDF
-    pdf_file = "manual.pdf"  # Certifique-se de que este é o nome correto do seu arquivo
+    st.write("""
+    O manual do usuário está disponível para download no link abaixo.
+    """)
 
-    # Verifica se o arquivo existe
-    if not os.path.isfile(pdf_file):
-        st.error(f"O arquivo {pdf_file} não foi encontrado.")
-        return
+    # Substitua esta URL pela URL real do seu PDF hospedado na nuvem
+    pdf_url = "https://drive.google.com/file/d/1gyG3qUke_RO4hRcIzZb-6bW9yMKT60fn/view"
 
-    # Lê o arquivo PDF
-    with open(pdf_file, "rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+    st.markdown(f"[Clique aqui para baixar o Manual do Usuário (PDF)]({pdf_url})")
 
-    # Incorpora o PDF na página
-    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
-    st.markdown(pdf_display, unsafe_allow_html=True)
+    st.write("""
+    Instruções:
+    1. Clique no link acima para baixar o manual.
+    2. Abra o arquivo PDF baixado com seu leitor de PDF preferido.
+    3. Se tiver problemas para abrir o arquivo, certifique-se de ter um leitor de PDF instalado em seu dispositivo.
+    """)
 
-    # Adiciona um botão para download
-    st.download_button(
-        label="Baixar Manual PDF",
-        data=base64_pdf,
-        file_name="manual.pdf",
-        mime="application/pdf"
-    )
 
 
 # Adicionar o rodapé personalizado
