@@ -3,6 +3,15 @@ import streamlit as st
 import json
 import os
 
+
+def check_authentication():
+    if not st.session_state.get('authenticated', False):
+        st.error("Por favor, faça login para acessar esta página.")
+        st.stop()
+
+def main():
+    check_authentication()
+
 def load_config():
     default_config = {
         "message_template": "",
