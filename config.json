@@ -1,0 +1,9 @@
+{
+    "message_template": "Olá Sr. (a) {client_name}, \n\nAplicativo + Sistema Web de Gestão para Empresas de Remoção e Guarda de veículos Apreendidos.  \n\n# Remoção de Veículos Apreendidos\n\n\nola mundo das nações!!!\n\nola teste 2\n \n Visite nossa pagina.",
+    "api_token": "Fcaf546673d304dc6959be8d8a6abd894S",
+    "instance_url": "/instances/3CA5FC5A13AD604D95A09291506EBED6/token/1E4C630EC28F1F7C2D23B8B9/send-text",
+    "image_url": "https://conceptoiatf.com/site/img/logoConcepto.png",
+    "link_url": "https://conceptoiatf.com/site/",
+    "title": "Concepto IATF",
+    "link_description": "Concepto IATF"
+}
