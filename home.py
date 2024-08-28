@@ -78,7 +78,7 @@ def main():
         st.sidebar.title("Navegação")
         page = st.sidebar.radio(
             "Escolha uma página",
-            ["Página Inicial", "Enviar Mensagens", "Configurações", "Manual"]
+            ["Página Inicial", " ", " ", "Manual"]
         )
 
         if st.sidebar.button("Logout"):
