@@ -15,18 +15,14 @@ st.set_page_config(page_title="WhatsApp Sender", page_icon="📱", layout="wide"
 def load_users():
     try:
         with open('users.json', 'r') as f:
-            users = json.load(f)
-        st.write(f"Usuários carregados: {list(users.keys())}")  # Debug
-        return users
+            return json.load(f)
     except Exception as e:
         st.error(f"Erro ao carregar usuários: {str(e)}")
         return {}
 
 def check_credentials(username, password):
     users = load_users()
-    is_valid = username in users and users[username] == password
-    st.write(f"Tentativa de login para {username}: {'Sucesso' if is_valid else 'Falha'}")  # Debug
-    return is_valid
+    return username in users and users[username] == password
 
 def login_page():
     st.title("Login")
@@ -37,12 +33,10 @@ def login_page():
             st.session_state['authenticated'] = True
             st.session_state['username'] = username
             st.success("Login bem-sucedido! A página será recarregada.")
-            st.empty()  
-            time.sleep(1) 
-            st.rerun()  
+            time.sleep(1)
+            st.rerun()
         else:
             st.error("Usuário ou senha incorretos")
-
 
 def load_page(page_name):
     try:
@@ -68,7 +62,10 @@ def show_home_page():
     """)
 
 def main():
-    if 'authenticated' not in st.session_state or not st.session_state['authenticated']:
+    if 'authenticated' not in st.session_state:
+        st.session_state['authenticated'] = False
+
+    if not st.session_state['authenticated']:
         login_page()
     else:
         st.sidebar.title("Navegação")
@@ -79,7 +76,7 @@ def main():
 
         if st.sidebar.button("Logout"):
             st.session_state['authenticated'] = False
-            st.experimental_rerun()
+            st.rerun()
 
         load_page(page)
 
