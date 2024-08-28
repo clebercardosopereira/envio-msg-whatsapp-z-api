@@ -6,7 +6,10 @@ import json
 import time
 
 
-import streamlit as st
+if 'authenticated' not in st.session_state or not st.session_state['authenticated']:
+    st.error("Por favor, faça login para acessar esta página.")
+    st.stop()
+
 
 def check_authentication():
     if not st.session_state.get('authenticated', False):
@@ -16,7 +19,7 @@ def check_authentication():
 def main():
     check_authentication()
 
-    
+
 def load_config():
     with open('config.json', 'r', encoding='utf-8') as f:
         return json.load(f)
