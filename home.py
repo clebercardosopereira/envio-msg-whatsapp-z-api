@@ -4,7 +4,6 @@ import importlib
 import os
 import sys
 import json
-import time
 
 # Adiciona o diretório atual ao path do Python
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -33,7 +32,6 @@ def login_page():
             st.session_state['authenticated'] = True
             st.session_state['username'] = username
             st.success("Login bem-sucedido! A página será recarregada.")
-            time.sleep(1)
             st.rerun()
         else:
             st.error("Usuário ou senha incorretos")
@@ -64,6 +62,15 @@ def show_home_page():
 def main():
     if 'authenticated' not in st.session_state:
         st.session_state['authenticated'] = False
+
+     # Oculta o menu superior se não estiver autenticado
+    if not st.session_state['authenticated']:
+        st.markdown("""
+        <style>
+        #MainMenu {visibility: hidden;}
+        .stApp header {visibility: hidden;}
+        </style>
+        """, unsafe_allow_html=True)
 
     if not st.session_state['authenticated']:
         login_page()
