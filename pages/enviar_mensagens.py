@@ -5,6 +5,18 @@ import http.client
 import json
 import time
 
+
+import streamlit as st
+
+def check_authentication():
+    if not st.session_state.get('authenticated', False):
+        st.error("Por favor, faça login para acessar esta página.")
+        st.stop()
+
+def main():
+    check_authentication()
+
+    
 def load_config():
     with open('config.json', 'r', encoding='utf-8') as f:
         return json.load(f)
