@@ -60,17 +60,20 @@ def show_home_page():
     """)
 
 def main():
-    if 'authenticated' not in st.session_state:
-        st.session_state['authenticated'] = False
 
-     # Oculta o menu superior se não estiver autenticado
-    if not st.session_state['authenticated']:
-        st.markdown("""
+    # Oculta o menu superior e a barra de hambúrguer
+    hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
-        .stApp header {visibility: hidden;}
+        .css-1rs6os {visibility: hidden;}
+        .css-r698ls {visibility: hidden;}
+        header {visibility: hidden;}
         </style>
-        """, unsafe_allow_html=True)
+        """
+    st.markdown(hide_menu_style, unsafe_allow_html=True)
+
+    if 'authenticated' not in st.session_state:
+        st.session_state['authenticated'] = False
 
     if not st.session_state['authenticated']:
         login_page()
@@ -78,7 +81,7 @@ def main():
         st.sidebar.title("Navegação")
         page = st.sidebar.radio(
             "Escolha uma página",
-            ["Página Inicial", " ", " ", "Manual"]
+           ["Página Inicial", "Enviar Mensagens", "Configurações", "Manual"]
         )
 
         if st.sidebar.button("Logout"):
