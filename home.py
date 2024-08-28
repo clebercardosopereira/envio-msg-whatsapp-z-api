@@ -4,6 +4,7 @@ import importlib
 import os
 import sys
 import json
+import time
 
 # Adiciona o diretório atual ao path do Python
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -35,9 +36,13 @@ def login_page():
         if check_credentials(username, password):
             st.session_state['authenticated'] = True
             st.session_state['username'] = username
-            st.experimental_rerun()
+            st.success("Login bem-sucedido! A página será recarregada.")
+            st.empty()  
+            time.sleep(1) 
+            st.rerun()  
         else:
             st.error("Usuário ou senha incorretos")
+
 
 def load_page(page_name):
     try:
