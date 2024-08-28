@@ -4,6 +4,10 @@ import json
 import os
 
 
+if 'authenticated' not in st.session_state or not st.session_state['authenticated']:
+    st.error("Por favor, faça login para acessar esta página.")
+    st.stop()
+
 def check_authentication():
     if not st.session_state.get('authenticated', False):
         st.error("Por favor, faça login para acessar esta página.")
